@@ -1,0 +1,11 @@
+[user]
+	name = Humm
+	email = hummsmith42@gmail.com
+	signingkey = 6CCC4563F40768C1FF1F3D904399EDF4968952B3
+[log]
+	showSignature = true
+[alias]
+	co = checkout
+	lg = log --all --oneline --graph
+	st = status
+	cm = commit

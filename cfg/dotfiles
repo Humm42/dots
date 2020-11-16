@@ -1,2 +1,10 @@
 cfg/dotfiles
 lib/profile
+cfg/user-dirs.dirs
+cfg/nvim/init.vim
+cfg/nvim/syntax/infsh.vim
+cfg/nvim/syntax/limbo.vim
+cfg/nvim/syntax/mkfile.vim
+cfg/nvim/after/ftplugin/
+cfg/git/config
+.tmux.conf
