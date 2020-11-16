@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "define ${2:-*} $1" | nc -N dict.org 2628 | ${PAGER:-more}

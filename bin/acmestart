@@ -1,0 +1,11 @@
+#!/bin/rc
+
+flags = ()
+
+if(! ~ $#font 0)
+	flags = ($flags -F $font)
+
+if(! ~ $#fixedfont 0)
+	flags = ($flags -f $fixedfont)
+
+acme $flags $*

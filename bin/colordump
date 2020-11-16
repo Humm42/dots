@@ -1,0 +1,13 @@
+#!/bin/sh
+
+row=0
+i=0
+while [ $i -lt 256 ]
+do
+	nrow=$((i / 10))
+	[ $nrow -eq $row ] || echo
+	printf '[%dm %.3d [0m[10m' $i $i
+	i=$((i + 1))
+	row=$nrow
+done
+echo

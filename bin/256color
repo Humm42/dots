@@ -1,0 +1,34 @@
+#!/bin/rc
+
+color = 0
+fn nextcolor {
+	printf '\033[48;5;'^$color^'m '
+	color = `{expr $color + 1}
+}
+
+fn reset {
+	printf '\033[0m'
+}
+
+for(i in `{seq 0 15})
+	nextcolor
+
+reset
+printf '\n\n'
+
+for(i in `{seq 6}) {
+	for(j in `{seq 6}) {
+		for(k in `{seq 6})
+			nextcolor
+		reset
+		printf '\n'
+	}
+	reset
+	printf '\n'
+}
+
+for(i in `{seq 24})
+	nextcolor
+
+reset
+printf '\n'

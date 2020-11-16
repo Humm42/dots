@@ -1,0 +1,2 @@
+#!/bin/rc
+exec zathura --fork $* >[2]/dev/null
