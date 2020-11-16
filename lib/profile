@@ -1,0 +1,59 @@
+user = $USER
+path = ($home/bin /opt/scripts /sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $PLAN9/bin)
+#fixedfont = $PLAN9/font/fixed/unicode.10x20.font
+#font = $PLAN9/font/lucsans/unicode.8.font
+fixedfont = /mnt/font/GoMono/10a/font
+font = /mnt/font/GoRegular/10a/font
+acmeshell = /opt/plan9/bin/rc
+tabstop = 8
+
+XDG_DATA_HOME = $home/data
+XDG_CONFIG_HOME = $home/cfg
+PYTHONUSERBASE = $home/data/pythonbase
+GOBIN = $home/bin
+TODO = $home/lib/todo
+GOPATH = $home/devel/go
+BKMK_FILE = ($home/lib/bookmarks $home/lib/bookmarks.^(unix cat-v typing))
+
+SFEED_PLUMBER = plumb
+SFEED_PIPER = sfeed_dump
+EDITOR = E
+TERMINAL = st
+BROWSER = firefox
+PAGER = less
+LESS = -iMR
+HIGHLIGHT_OPTIONS = -Oansi
+GO111MODULE = on
+_JAVA_AWT_WM_NONREPARENTING = 1
+
+LANG = en_US.UTF-8
+
+fn dot {
+	git --work-tree=$home --git-dir=$home/lib/dot $*
+}
+
+fn man {
+	builtin man -O width=`{tput cols} $*
+}
+
+fn cd {
+	builtin cd $1 && awd
+}
+
+fn lc {9 ls -pF $* | 9 mc}
+# BusyBox ls(1) specific (guess it works with GNU ls(1), too)
+fn l {ls -ApFl --color=never $*}
+
+fn sfeeds {sfeed_curses $home/.sfeed/feeds/*}
+
+fn mkcd {
+	9 mkdir -p $1 && cd $1
+}
+
+fn cs {printf '\033c'; awd}
+
+if (~ $TERM linux)
+	setterm --blength=0
+if (~ `{tty} /dev/tty1)
+	if (! pgrep /usr/bin/X >/dev/null)
+		exec startx
