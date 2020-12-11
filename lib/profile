@@ -10,6 +10,7 @@ tabstop = 8
 XDG_DATA_HOME = $home/data
 XDG_CONFIG_HOME = $home/cfg
 PYTHONUSERBASE = $home/data/pythonbase
+GEM_HOME = $home/data/gems
 GOBIN = $home/bin
 TODO = $home/lib/todo
 GOPATH = $home/devel/go
