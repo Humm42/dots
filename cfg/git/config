@@ -9,3 +9,4 @@
 	lg = log --all --oneline --graph
 	st = status
 	cm = commit
+	ost = status -uno
