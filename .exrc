@@ -1,0 +1,9 @@
+set autoindent
+set noerrorbells
+set noflash
+set hardtabs=8
+set ignorecase
+set shiftwidth=8
+set showmode
+set tabstop=8
+set terse

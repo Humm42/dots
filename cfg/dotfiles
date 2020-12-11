@@ -1,3 +1,4 @@
+.exrc
 .tmux.conf
 bin/256color
 bin/a+
