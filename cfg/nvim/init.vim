@@ -17,6 +17,7 @@ set mouse=a
 set fileformat=unix fileformats=unix,dos
 set encoding=utf-8
 set laststatus=2
+set hidden
 
 colorscheme pablo
 if $TERM != "linux"
@@ -47,6 +48,7 @@ let g:vimwiki_list = [
 highlight CursorLine cterm=NONE ctermbg=242
 highlight CursorColumn cterm=NONE ctermbg=242
 noremap <silent> <leader>c <cmd>se cul! cuc!<cr>
+nnoremap <leader>f <cmd>call cursor(0, &tw+2)<cr>F r<cr>
 
 noremap <up> <nop>
 noremap! <up> <esc>
@@ -64,7 +66,9 @@ nnoremap / /\v
 
 if has('nvim-0.5')
 	packadd nvim-lspconfig
+	packadd nvim-treesitter
 	lua <<!
+	-- TODO: don’t try to reformat VimL
 function my_on_attach(client)
 	vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
 	vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {
@@ -77,5 +81,11 @@ lsp = require 'nvim_lsp'
 lsp.pyls.setup{on_attach = my_on_attach}
 lsp.gopls.setup{on_attach = my_on_attach}
 lsp.vimls.setup{on_attach = my_on_attach}
+
+tsc = require 'nvim-treesitter.configs'
+tsc.setup {
+	highlight = {enable = true},
+	indent = {enable = true},
+}
 !
 endif
