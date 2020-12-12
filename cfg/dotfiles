@@ -1,4 +1,5 @@
 .exrc
+.gtkrc-2.0
 .tmux.conf
 bin/256color
 bin/a+
@@ -9,10 +10,12 @@ bin/dict
 bin/z
 cfg/dotfiles
 cfg/git/config
+cfg/gtk-3.0/settings.ini
 cfg/nvim/after/ftplugin/
 cfg/nvim/init.vim
 cfg/nvim/syntax/infsh.vim
 cfg/nvim/syntax/limbo.vim
 cfg/nvim/syntax/mkfile.vim
 cfg/user-dirs.dirs
+cfg/xsettingsd/xsettingsd.conf
 lib/profile

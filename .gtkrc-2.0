@@ -1,0 +1,3 @@
+# theme name gets overridden by XSETTINGS
+gtk-theme-name="AdwaitaDark"
+gtk-icon-theme-name="breeze-dark"
