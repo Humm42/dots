@@ -19,6 +19,7 @@ BKMK_FILE = ($home/lib/bookmarks $home/lib/bookmarks.^(unix cat-v typing))
 SFEED_PLUMBER = plumb
 SFEED_PIPER = sfeed_dump
 EDITOR = E
+VISUAL = nvim
 TERMINAL = st
 BROWSER = firefox
 PAGER = less
