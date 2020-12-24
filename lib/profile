@@ -53,6 +53,9 @@ fn mkcd {
 
 fn cs {printf '\033c'; awd}
 
+if(test -r /etc/profile.rc)
+	. /etc/profile.rc
+
 if (~ $TERM linux)
 	setterm --blength=0
 if (~ `{tty} /dev/tty1)
