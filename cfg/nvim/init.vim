@@ -6,7 +6,7 @@ set wildignore=*.o
 set incsearch nohlsearch
 set number relativenumber
 set listchars=eol:$,tab:»·,trail:= list
-set scrolloff=5
+set scrolloff=3
 set wildmenu
 set ruler
 set ignorecase smartcase tagcase=match
