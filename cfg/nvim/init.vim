@@ -75,6 +75,10 @@ function my_on_attach(client)
 		noremap = true,
 		silent = true,
 	})
+	vim.api.nvim_buf_set_keymap(0, 'n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<cr>', {
+		noremap = true,
+		silent = true,
+	})
 	vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 lsp = require 'nvim_lsp'
