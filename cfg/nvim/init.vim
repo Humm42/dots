@@ -66,7 +66,7 @@ nnoremap / /\v
 
 if has('nvim-0.5')
 	packadd nvim-lspconfig
-	packadd nvim-treesitter
+	" packadd nvim-treesitter
 	lua <<!
 	-- TODO: don’t try to reformat VimL
 function my_on_attach(client)
@@ -81,15 +81,17 @@ function my_on_attach(client)
 	})
 	vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
-lsp = require 'nvim_lsp'
+lsp = require 'lspconfig'
 lsp.pyls.setup{on_attach = my_on_attach}
 lsp.gopls.setup{on_attach = my_on_attach}
 lsp.vimls.setup{on_attach = my_on_attach}
+lsp.clangd.setup{on_attach = my_on_attach}
 
-tsc = require 'nvim-treesitter.configs'
-tsc.setup {
-	highlight = {enable = true},
-	indent = {enable = true},
-}
+-- TODO: config treesitter
+-- tsc = require 'nvim-treesitter.configs'
+-- tsc.setup {
+-- 	highlight = {enable = true},
+-- 	indent = {enable = true},
+-- }
 !
 endif
