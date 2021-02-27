@@ -19,7 +19,7 @@ set encoding=utf-8
 set laststatus=2
 set hidden
 
-colorscheme pablo
+colorscheme basic-dark
 if $TERM != "linux"
 	set termguicolors
 	let &t_8f="\<esc>[38;2;%lu;%lu;%lum"
