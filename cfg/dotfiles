@@ -10,6 +10,7 @@ bin/dict
 bin/z
 cfg/dotfiles
 cfg/git/config
+cfg/go/env
 cfg/gtk-3.0/settings.ini
 cfg/nvim/after/ftplugin/
 cfg/nvim/after/syntax/syncolor.vim

@@ -1,0 +1,3 @@
+GO111MODULE=on
+GOBIN=/home/humm/bin
+GOPATH=/home/humm/devel/go
