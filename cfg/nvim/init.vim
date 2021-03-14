@@ -79,13 +79,30 @@ function my_on_attach(client)
 		noremap = true,
 		silent = true,
 	})
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', {
+		noremap = true,
+		silent = true,
+	})
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.code_action()<cr>', {
+		noremap = true,
+		silent = true,
+	})
 	vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
+
 lsp = require 'lspconfig'
 lsp.pyls.setup{on_attach = my_on_attach}
-lsp.gopls.setup{on_attach = my_on_attach}
+lsp.gopls.setup{on_attach = my_on_attach, settings = {
+	gopls = {
+		gofumpt = true,
+		staticcheck = true,
+	}
+}}
 lsp.vimls.setup{on_attach = my_on_attach}
-lsp.clangd.setup{on_attach = my_on_attach}
+
+local clangd_cap = vim.lsp.protocol.make_client_capabilities()
+clangd_cap.textDocument.publishDiagnostics.codeActionsInline = true
+lsp.clangd.setup{on_attach = my_on_attach, capabilities = clangd_cap}
 
 -- TODO: config treesitter
 -- tsc = require 'nvim-treesitter.configs'
