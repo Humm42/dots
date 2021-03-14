@@ -10,3 +10,4 @@
 	st = status
 	cm = commit
 	ost = status -uno
+	t = ls-tree --name-only HEAD
