@@ -21,4 +21,5 @@ cfg/nvim/syntax/limbo.vim
 cfg/nvim/syntax/mkfile.vim
 cfg/user-dirs.dirs
 cfg/xsettingsd/xsettingsd.conf
+lib/plumbing
 lib/profile

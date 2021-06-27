@@ -1,0 +1,120 @@
+# cat $home/lib/plumbing | 9p write plumb/rules
+
+editor = acmestart
+filename = '!-.0-~¡-￿'
+pathname = $filename'/'
+printable = '!-~¡-￿'
+
+# /usr/share/doc HTML docs, index
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'doc://(['$pathname']+)'
+arg	isfile	'/usr/share/doc/'$1'/index.html'
+data	set	'file://'$file
+data	is	NEXT
+plumb	to	web
+
+# other /usr/share/doc HTML docs
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'doc://(['$pathname']+)'
+arg	isfile	'/usr/share/doc/'$1
+data	set	'file://'$file
+data	is	NEXT
+plumb	to	web
+
+# relative file: URIs
+type	is	text
+data	matches	'file:(['$filename']['$pathname']*)'
+arg	isfile	$1
+data	set	'file://'$file
+data	is	NEXT
+plumb	to	web
+
+# Reddit URLs
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'https?://(www\.)?reddit.com(/.*)?'
+data	set	'https://old.reddit.com'$2
+data	is	NEXT
+plumb	to	web
+
+# gopher
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'gopher://.*'
+plumb	to	gopher
+plumb	start	ter sacc $0
+
+# gemini
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'gemini://.*'
+plumb	to	gemini
+plumb	start	lagrange $0
+#plumb	start	ter gmnlm $0
+
+# YT URLs
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'https?://(www\.)?youtu(\.be/|be\.com/watch\?v=).*'
+plumb	start	watchyt $0
+
+# URLs for web browser
+type	is	text
+data	matches	'['$printable']+'
+data	matches	'(https?|file)://.*'
+plumb	to	web
+plumb	start	firefox --new-tab $0
+
+# GIFs and videos
+type	is	text
+data	matches	'['$pathname']+'
+data	matches	'['$pathname']+\.(gif|GIF|mp4|MP4|mkv|MKV)'
+arg	isfile	$0
+plumb	start	mpv $file
+
+# Plan 9 images
+type	is	text
+data	matches	'['$pathname']+'
+data	matches	'['$pathname']+\.(bit|BIT)'
+arg	isfile	$0
+plumb	to	image
+plumb	start	page $file
+
+# other images
+type	is	text
+data	matches	'['$pathname']+'
+data	matches	'['$pathname']+\.(jpe?g|JPE?G|png|PNG|ff|FF)'
+arg	isfile	$0
+plumb	to	image
+plumb	start	sxiv $file
+
+# documents
+type	is	text
+data	matches	'['$pathname']+'
+data	matches	'['$pathname']+\.(ps|PS|pdf|PDF|djvu|DJVU)'
+arg	isfile	$0
+plumb	to	ps
+plumb	start	zathura $file
+
+# man pages
+type	is	text
+data	matches	'['$filename']+\(([0-9a-zA-Z]+)\)'
+plumb	start	psman $2 $1
+
+# existing text files
+type	is	text
+data	matches	'['$pathname']+'
+arg	isfile	$0
+plumb	to	edit
+plumb	client	$editor
+
+type	is	text
+data	is	plumber-reload
+plumb	start	9 rc -c 'cat $home/lib/plumbing | 9p write plumb/rules'
+
+type	is	text
+data	matches	'Local (.*)'
+plumb	to	none
+plumb	start	rc -c $1
